@@ -15,8 +15,12 @@ export const statistics = [
     getValue: (country) => (country.borders ? country.borders.length : 0),
   },
   {
-    name: "Area",
+    name: "Area (square km)",
     getValue: (country) => country.area,
+  },
+  {
+    name: "GDP (2022, $Billion)",
+    getValue: (country) => country["gdp-2022"] || 0,
   },
 ];
 
@@ -26,16 +30,39 @@ export const getRandomStatistic = () => {
 
 // Logic to pick two random countries from the large list
 
-export const useCountrySelection = (countries) => {
-  const getRandomIndex = (excludeIndex = -1) => {
+export const useCountrySelection = (
+  countries,
+  lastCountries = null,
+  countryToKeep = null
+) => {
+  const getRandomIndex = (excludeIndex = -1, excludeCountry = null) => {
     let randomIndex;
     do {
       randomIndex = Math.floor(Math.random() * countries.length);
-    } while (randomIndex === excludeIndex && countries.length > 1);
+    } while (
+      (randomIndex === excludeIndex && countries.length > 1) ||
+      (excludeCountry && countries[randomIndex]?.cca3 === excludeCountry.cca3)
+    );
     return randomIndex;
   };
 
   const getTwoRandomCountries = () => {
+    // If countryToKeep is specified, keep one country and get a new one
+    if (countryToKeep !== null && lastCountries && lastCountries.length === 2) {
+      const keptCountry =
+        countryToKeep === 1 ? lastCountries[0] : lastCountries[1];
+
+      // Get a new random country (excluding the kept country)
+      const newIndex = getRandomIndex(-1, keptCountry);
+      const newCountry = countries[newIndex];
+
+      // Position the kept country (left or right)
+      return countryToKeep === 1
+        ? [keptCountry, newCountry]
+        : [newCountry, keptCountry];
+    }
+
+    // Default behavior: get two completely random countries
     const index_1 = countries.length > 0 ? getRandomIndex() : -1;
     const index_2 = countries.length > 1 ? getRandomIndex(index_1) : -1;
 
