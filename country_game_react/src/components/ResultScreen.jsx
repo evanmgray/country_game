@@ -44,53 +44,61 @@ function ResultScreen({ result, countries, statistic, onClickToPlayAgain }) {
           {result === "correct" ? "✓ Correct!" : "✗ Incorrect!"}
         </h2>
 
-        <div className="mb-4">
-          <div className="card mb-3">
-            <div className="card-body">
-              <h3 className="card-title text-center">
-                {countries[0].name.common}
-              </h3>
-              <p className="flag-emoji text-center my-3">{countries[0].flag}</p>
-              <div className="bar-container">
-                <div
-                  className="animated-bar"
-                  style={{ width: `${animatedWidth1}%` }}
-                ></div>
-                <span
-                  className={`bar-value ${
-                    percentage1 <= 66 ? "dark-text" : ""
-                  }`}
-                >
-                  {value1.toLocaleString()}
-                </span>
+        <div className="row g-4">
+          <div className="col-md-6">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title text-center">
+                  {countries[0].name.common}
+                </h3>
+                <p className="flag-emoji text-center my-3">
+                  {countries[0].flag}
+                </p>
+                <div className="bar-container">
+                  <div
+                    className="animated-bar"
+                    style={{ width: `${animatedWidth1}%` }}
+                  ></div>
+                  <span
+                    className={`bar-value ${
+                      percentage1 <= 66 ? "dark-text" : ""
+                    }`}
+                  >
+                    {value1.toLocaleString()}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="card mb-3">
-            <div className="card-body">
-              <h3 className="card-title text-center">
-                {countries[1].name.common}
-              </h3>
-              <p className="flag-emoji text-center my-3">{countries[1].flag}</p>
-              <div className="bar-container">
-                <div
-                  className="animated-bar"
-                  style={{ width: `${animatedWidth2}%` }}
-                ></div>
-                <span
-                  className={`bar-value ${
-                    percentage2 <= 66 ? "dark-text" : ""
-                  }`}
-                >
-                  {value2.toLocaleString()}
-                </span>
+          <div className="col-md-6">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title text-center">
+                  {countries[1].name.common}
+                </h3>
+                <p className="flag-emoji text-center my-3">
+                  {countries[1].flag}
+                </p>
+                <div className="bar-container">
+                  <div
+                    className="animated-bar"
+                    style={{ width: `${animatedWidth2}%` }}
+                  ></div>
+                  <span
+                    className={`bar-value ${
+                      percentage2 <= 66 ? "dark-text" : ""
+                    }`}
+                  >
+                    {value2.toLocaleString()}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-4">
           <button
             className="btn btn-primary btn-lg"
             onClick={onClickToPlayAgain}
