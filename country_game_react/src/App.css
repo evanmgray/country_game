@@ -12,8 +12,9 @@ body {
   min-height: 100vh;
   min-height: 100dvh; /* Dynamic viewport height */
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   overflow-y: auto;
   padding: 1rem;
 }
