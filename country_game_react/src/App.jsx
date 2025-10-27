@@ -70,7 +70,7 @@ function App() {
   };
 
   return (
-    <div className="container my-5">
+    <div className="container my-2">
       <div className="text-center">
         <h1 className="display-3 fw-bold mb-4">Country Comparison Game</h1>
         <span className="badge bg-primary fs-4 mb-4">Streak: {streak}</span>
