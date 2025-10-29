@@ -6,11 +6,6 @@ export const statistics = [
     getValue: (country) => country.population,
   },
   {
-    name: "Number of Official Languages",
-    getValue: (country) =>
-      country.languages ? Object.keys(country.languages).length : 0,
-  },
-  {
     name: "Number of Land Border Countries",
     getValue: (country) => (country.borders ? country.borders.length : 0),
   },
